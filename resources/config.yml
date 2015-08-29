@@ -1,6 +1,6 @@
 ---
-#write here the world name where you want to give item at player
-world: world
+#write here the world name where you want InventoryCommand works!
+level: world
 #write here item ID
 ID: 0
 #write here item damage
