@@ -57,13 +57,17 @@ class Main extends PluginBase implements Listener{
         $player = $event->getPlayer();
         $item = $event->getItem();
 
+        if($player->isCreative())
+            return;
+
         if(!$this->isAllowedWorld($player->getLevel()))
             return;
 
         foreach($this->getConfig()->get("data") as $slot => $g) {
             if ($item->getId() === $g["id"] && $item->getDamage() === $g["damage"]) {
                 foreach ($g["command"] as $cmd) {
-                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{player}", $player->getName(), $cmd));
+                    if(!empty($cmd))
+                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{player}", $player->getName(), str_replace("/", "",$cmd)));
                 }
             }
         }
