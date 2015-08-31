@@ -1,29 +1,31 @@
 ---
 #write here the world name where you want InventoryCommand works!
+#set this field empty if you want that works on all worlds in the server
+#if you want to apply only on two or more worlds, enter the names of the worlds separated by a comma
+#example level: world, hungergames, lobby
 level: world
-#write here item ID
-ID: 0
-#write here item damage
-Damage: 0
-#write here item amount
-Ammount: 64
-#write here slot number (from 0 to 35)
-slot: 0
-ID2: 
-Damage2: 
-Ammount2: 
-slot2: 
-#you can add more item,just repeate this and change numbers! the max is 10
-#write here first command item
-item1: 0
-commands1:
--
--
--
-item2: 1
-commands2:
--
--
--
-#you can add more item,the max is 10 commanditems. Also you can add infinite commands on every item!
+
+
+data:
+  #write here slot + slot number (max of slots allowed 35)
+  slot1:
+    #write here item ID
+    id: 46
+    #write here item damage
+    damage: 0
+    #write here item amount
+    amount: 64
+    #you can add more item,the max is 10 commanditems. Also you can add infinite commands on every item!
+    command:
+      -
+      -
+      -
+  slot2:
+    id: 0
+    damage: 0
+    amount: 0
+    command:
+      -
+      -
+      -
 ...
