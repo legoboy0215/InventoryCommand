@@ -15,7 +15,6 @@ data:
     damage: 0
     #write here item amount
     amount: 64
-    #you can add more item,the max is 10 commanditems. Also you can add infinite commands on every item!
     command:
       -
       -
@@ -28,4 +27,5 @@ data:
       -
       -
       -
+#you can add more item,max is 35. Also you can add infinite commands!
 ...
