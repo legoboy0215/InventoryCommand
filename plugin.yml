@@ -1,6 +1,7 @@
 name: InventoryCommand
 author: fycarman
+authors: fycarman, xionbig, luca28pet
 main: InventoryCommand\Main
 version: 1.0.0
 api: [1.12.0]
-description: Run command from item in your inventory! You can also open it with compass right click!
+description: Run command from item in your inventory!
