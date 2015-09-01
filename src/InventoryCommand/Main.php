@@ -80,7 +80,7 @@ class Main extends PluginBase implements Listener{
             return;
         foreach($this->getConfig()->get("data") as $slot => $g){
             $item = new Item($g["id"], $g["damage"]);
-            if($item->getId() != Block::AIR && $item->getMaxStackSize() <= $g["count"]){
+            if($item->getId() != Block::AIR && $item->getMaxStackSize() <= $g["amount"]){
                 $item->setCount($g["count"]);
                 if(!$player->getInventory()->contains($item) && $player->getInventory()->canAddItem($item)){
                     $player->getInventory()->addItem($item);
