@@ -57,13 +57,17 @@ class Main extends PluginBase implements Listener{
         $player = $event->getPlayer();
         $item = $event->getItem();
 
+        if($player->isCreative())
+            return;
+
         if(!$this->isAllowedWorld($player->getLevel()))
             return;
 
         foreach($this->getConfig()->get("data") as $slot => $g) {
             if ($item->getId() === $g["id"] && $item->getDamage() === $g["damage"]) {
                 foreach ($g["command"] as $cmd) {
-                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{player}", $player->getName(), $cmd));
+                    if(!empty($cmd))
+                    $this->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace("{player}", $player->getName(), str_replace("/", "",$cmd)));
                 }
             }
         }
@@ -75,8 +79,12 @@ class Main extends PluginBase implements Listener{
         if($player->isCreative())
             return;
         foreach($this->getConfig()->get("data") as $slot => $g){
-            $item = new Item($g["id"], $g["damage"]);
-            if($item->getId() != Block::AIR && $item->getMaxStackSize() <= $g["count"]){
+            if(is_numeric($g["id"])){
+                $item = new Item($g["id"], $g["damage"]);
+            }else{
+                $item = Item::fromString($g["id"]);
+            }
+            if($item->getId() != Block::AIR && $item->getMaxStackSize() <= $g["amount"]){
                 $item->setCount($g["count"]);
                 if(!$player->getInventory()->contains($item) && $player->getInventory()->canAddItem($item)){
                     $player->getInventory()->addItem($item);
