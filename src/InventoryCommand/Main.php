@@ -79,7 +79,11 @@ class Main extends PluginBase implements Listener{
         if($player->isCreative())
             return;
         foreach($this->getConfig()->get("data") as $slot => $g){
-            $item = new Item($g["id"], $g["damage"]);
+            if(is_numeric($g["id"])){
+                $item = new Item($g["id"], $g["damage"]);
+            }else{
+                $item = Item::fromString($g["id"]);
+            }
             if($item->getId() != Block::AIR && $item->getMaxStackSize() <= $g["amount"]){
                 $item->setCount($g["count"]);
                 if(!$player->getInventory()->contains($item) && $player->getInventory()->canAddItem($item)){
